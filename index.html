@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basic Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-primary d-flex justify-content-center align-items-center vh-100 text-white">
+
+  <div class="card p-4 bg-purple shadow-lg" style="width: 100%; max-width: 400px; background-color: #6f42c1;">
+    <h2 class="text-center mb-4">Basic Calculator</h2>
+
+    <div class="mb-3">
+      <input type="number" class="form-control" id="num1" placeholder="Enter first number">
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="operator" placeholder="Enter operator (+, -, *, /)">
+    </div>
+    <div class="mb-3">
+      <input type="number" class="form-control" id="num2" placeholder="Enter second number">
+    </div>
+
+    <button class="btn btn-light fw-bold" onclick="calculate()">Calculate</button>
+    <div class="mt-3 text-center fs-5" id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const operator = document.getElementById("operator").value.trim();
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Please enter valid numbers.";
+      } else {
+        switch (operator) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            result = num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+            break;
+          default:
+            result = "Invalid operator.";
+        }
+      }
+
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+  </script>
+</body>
+</html>
